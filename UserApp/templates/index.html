@@ -1,0 +1,138 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+{% block content %}
+
+  <body>
+
+    <!-- BANNER START  -->
+
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container">
+            <div class="row p-5">
+              <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                <img class="img-fluid" src="{% static 'images/b1.jpeg' %}" alt="carousel1" />
+              </div>
+              <div class="col-lg-6 mb-0 d-flex align-items-center">
+                <div class="text-align-left align-self-center">
+                  <h1 class="h1 text-success"><b>Destination Wedding</b></h1>
+                  <h3 class="h2" id="font1">Get married in an ancient cave lined with candles, plan a photo shoot under a crystalized waterfall, or take your chances with the Northern.</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container">
+            <div class="row p-5">
+              <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                <img class="img-fluid" src="{% static 'images/car2.jpeg' %}" alt="carousel" />
+              </div>
+              <div class="col-lg-6 mb-0 d-flex align-items-center">
+                <div class="text-align-left">
+                  <h1 class="h1 text-success"><b>Book your Dream Event</b></h1>
+                  <h3 class="h2" id="font1" >A Variety of Excellent Food and Drink</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container">
+            <div class="row p-5">
+              <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                <img  class="img-fluid" src="{% static 'images/car3.jpg' %}" alt="carousel" />
+              </div>
+              <div class="col-lg-6 mb-0 d-flex align-items-center">
+                <div class="text-align-left">
+                  <h1 class="h1 text-success"><b>Looking for Catering Menu</b></h1>
+                  <h3 class="h2" id="font1">Mexican, Indian, and Thai dishes are delicious and affordable. Or, if you're hosting an event during the day, serve brunch and breakfast items.</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <i class="fas fa-chevron-left"></i>
+      </a>
+      <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <i class="fas fa-chevron-right"></i>
+      </a>
+    </div>
+
+    <!-- BANNER END -->
+
+
+    <!-- CATEGORIES START  -->
+
+    <section class="container-fluid py-5 bg-light">
+      <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+          <h1 id="ourcat1">Our Categories</h1>
+          <hr class="mx-auto rounded" id="hr1">
+          <h5 id="ourcat1">Here you can check out our all products with fair price.</h5>
+        </div>
+      </div>
+
+      <div class="row">
+        {% for i in catData %}
+        <div class="col-md-4 col-lg-4 col-4 mt-3">
+          <div class="card" id="card1">
+            {% comment %} <div class="embed-responsive embed-responsive-16by9">
+              <img src="{% static 'images/food home.png' %}" class="card-img-top embed-responsive-item">
+            </div> {% endcomment %}
+            <div class="card-block text-center">
+              <h5 class="text-center mt-3 mb-3" id="h5">{{i.name}}</h5>
+              <p class="text-center">
+                <a class="btn btn-success" href="{% url 'SubCategoryView' i.id %}"><b>Go Shop</b></a>
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+        </div>
+    </section>
+
+    <!-- CATEGORIES END -->
+
+    
+    <!-- PRODUCT START -->
+
+    <section>
+      <div class="container py-5">
+        <div class="row text-center py-3">
+          <div class="col-lg-6 m-auto">
+            <h1 id="ourcat1">Trending Segment</h1>
+            <hr class="mx-auto rounded" id="hr1">
+            <h5 id="ourcat1">Here you can check out our new  segment with fair price.</h5>
+          </div>
+        </div>
+        <div class="row">
+    
+          {% for i in product %}
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card" id="card2">
+              <a href="{% url 'product_detailurl' i.pk %}">
+                <img src="{{i.image.url}}" class="card-img-top" alt="..." />
+              </a>
+              <div class="card-body text-center">
+                <a href="{% url 'shopurl' 0 %}" class="h2 text-decoration-none text-dark">{{i.name}}</a>
+                <p class="card-text" id="ruppe">₹{{i.price}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT END -->
+
+  </body>
+
+{% endblock %}
